@@ -3,8 +3,10 @@ local config = require("commit-reminder.config")
 local M = {}
 
 local function handle_callback(Returned)
-	local notifyopts = { title = "Last Commit Reminder", timeout = 3000 }
-	vim.notify(Returned.stdout, vim.log.levels.INFO, notifyopts)
+	vim.schedule(function()
+		local notifyopts = { title = "Commit Reminder", timeout = 2000 }
+		vim.notify(Returned.stdout, vim.log.levels.INFO, notifyopts)
+	end)
 end
 
 function M.setup(opts)
